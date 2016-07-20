@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from './product.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../';
 
-let speakersUrl = CONFIG.baseUrls.speakers;
+let productsUrl = CONFIG.baseUrls.products;
 
 @Injectable()
 export class ProductService {
@@ -15,51 +15,51 @@ export class ProductService {
     private exceptionService: ExceptionService,
     private messageService: MessageService,
     private spinnerService: SpinnerService) {
-    this.messageService.state.subscribe(state => this.getSpeakers());
+    this.messageService.state.subscribe(state => this.getProducts());
   }
 
-  addSpeaker(product: Product) {
+  addProduct(product: Product) {
     let body = JSON.stringify(product);
     this.spinnerService.show();
     return <Observable<Product>>this.http
-      .post(`${speakersUrl}`, body)
+      .post(`${productsUrl}`, body)
       .map(res => res.json().data)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  deleteSpeaker(product: Product) {
+  deleteProduct(product: Product) {
     this.spinnerService.show();
     return <Observable<Product>>this.http
-      .delete(`${speakersUrl}/${product.id}`)
+      .delete(`${productsUrl}/${product.id}`)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  getSpeakers() {
+  getProducts() {
     this.spinnerService.show();
     return <Observable<Product[]>>this.http
-      .get(speakersUrl)
+      .get(productsUrl)
       .map(res => this.extractData<Product[]>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  getSpeaker(id: number) {
+  getProduct(id: number) {
     this.spinnerService.show();
     return <Observable<Product>>this.http
-      .get(`${speakersUrl}/${id}`)
+      .get(`${productsUrl}/${id}`)
       .map(res => this.extractData<Product>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  updateSpeaker(product: Product) {
+  updateProduct(product: Product) {
     let body = JSON.stringify(product);
     this.spinnerService.show();
 
     return <Observable<Product>>this.http
-      .put(`${speakersUrl}/${product.id}`, body)
+      .put(`${productsUrl}/${product.id}`, body)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }

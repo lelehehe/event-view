@@ -3,6 +3,7 @@ export let CONFIG = {
     config: 'commands/config',
     resetDb: 'commands/resetDb',
     speakers: 'api/speakers.json',
-    sessions: 'api/sessions.json'
+    sessions: 'api/sessions.json', 
+    products: 'api/products.json'
   }
 };

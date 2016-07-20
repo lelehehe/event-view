@@ -14,6 +14,7 @@ import {
   ModalComponent,
   NavComponent,
   SpeakerService,
+  ProductService,
   SpinnerComponent,
   ToastComponent
 } from '../app/shared';
@@ -35,7 +36,7 @@ import {
     provide(XHRBackend, { useClass: InMemoryBackendService }),
     provide(SEED_DATA, { useClass: InMemoryStoreService }),
     provide(InMemoryBackendConfig, { useValue: { delay: 600 } }),
-    SpeakerService,
+    SpeakerService, ProductService,
     APP_SHARED_PROVIDERS,
   ]
 })

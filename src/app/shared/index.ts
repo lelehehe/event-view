@@ -13,6 +13,8 @@ export * from './spinner';
 export * from './spinner/spinner.service';
 export * from './speaker-data/speaker.service';
 export * from './speaker-data/speaker.model';
+export * from './product-data/product.service';
+export * from './product-data/product.model';
 export * from './toast';
 export * from './toast/toast.service';
 export * from './user-profile.service';

@@ -3,5 +3,7 @@ export class Product {
   name: string;
   desciption: string;
   price: number;
-  images: string[];
+  //convention: id.0.jpg
+  image: string; 
+  extra_images: string[];
 }

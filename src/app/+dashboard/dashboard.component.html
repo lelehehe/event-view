@@ -1,4 +1,17 @@
 <article class="template animated slideInRight">
+  <h4>Top Products</h4>
+  <div>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col"
+        *ngFor="let product of products | async;trackBy:trackByProducts"
+        (click)="gotoProductDetail(product)">
+        <ev-dashboard-button [product]="product"></ev-dashboard-button>
+      </div>
+    </div>
+  </div> 
+</article>
+
+<article class="template animated slideInRight">
   <h4>Top Speakers</h4>
   <div>
     <div class="mdl-grid">

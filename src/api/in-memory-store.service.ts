@@ -1,3 +1,5 @@
+import { Product } from '../app/shared';
+
 export class InMemoryStoreService {
   /**
   * Creates fresh copy of data each time.
@@ -149,7 +151,6 @@ export class InMemoryStoreService {
       {
         'id': 30,
         'name': 'Millennium Falcon',
-        'type': 'space'
       },
       {
         'id': 32,
@@ -203,6 +204,25 @@ export class InMemoryStoreService {
       }
     ];
 
-    return { rooms, speakers, sessions };
+    let products = [
+      {
+          id: 1,
+          name: 'salmon', 
+          desciption: 'Salmon is the common name for several species of ray-finned fish in the family Salmonidae. Other fish in the same family include trout, char, grayling and whitefish. Salmon are native to tributaries of the North Atlantic (genus Salmo) and Pacific Ocean (genus Oncorhynchus). Many species of salmon have been introduced into non-native environments such as the Great Lakes of North America and Patagonia in South America. Salmon are intensively farmed in many parts of the world.', 
+          price: 23,
+          image: '1.0.jpg',
+          extra_images: ['1.1.jpg', '1.2.jpg','1.3.jpg','1.4.jpg']
+      },
+      {
+          id: 2,
+          name: 'dumpling', 
+          desciption: 'Dumpling is a broad classification for a dish that consists of small pieces of dough (made from a variety of starch sources), often wrapped around a filling (as in ravioli or wontons). The dough can be based on bread, flour, or potatoes, and may be filled with fish, meat, sweets, or vegetables. They may be cooked by boiling, frying, simmering, or steaming. Dumplings may be savoury or sweet and can be eaten by themselves, with gravy or sauce, or in soups or stews.', 
+          price: 12,
+          image: '2.0.jpg',
+          extra_images: ['2.1.jpg', '2.2.jpg','2.3.jpg','2.4.jpg']
+      }
+      
+    ];
+    return { rooms, speakers, sessions, products };
   }
 }

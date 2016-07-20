@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Speaker } from '../../../../app/shared';
+import { Speaker, Product } from '../../../../app/shared';
 
 @Component({
   moduleId: module.id,
@@ -10,9 +10,23 @@ import { Speaker } from '../../../../app/shared';
 })
 export class DashboardButtonComponent implements OnInit {
   @Input() speaker: Speaker;
+  @Input() product: Product;
+
+  name: string;
+
+  //name: string =  this.speaker? .name;
 
   constructor() {}
 
   ngOnInit() {
+    if (this.product) {
+      this.name = this.product.name;
+    }
+    else if (this.speaker) {
+      this.name = this.speaker.name;
+    }
+    else {
+      this.name = 'test';
+    }
   }
 }

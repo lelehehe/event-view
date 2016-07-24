@@ -7,6 +7,7 @@ const map: any = {
 
   'main': 'main.js',
   '@angular' : 'node_modules/@angular',
+  '@angular2-material': 'node_modules/@angular2-material',
   'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api',
   'rxjs' : 'node_modules/rxjs'
 };
@@ -20,14 +21,27 @@ const packages: any = {
   'angular2-in-memory-web-api' : {main : 'index.js', defaultExtension : 'js'},
 };
 
+// Angular Material 2 Packages to load.
+var _materialPackages = [
+  'core', 'toolbar', 'button', 'card', 'checkbox', 'icon', 'input', 'list', 'progress-bar',
+  'progress-circle', 'radio', 'sidenav', 'grid-list', 'tabs', 'slide-toggle'
+];
+
+_materialPackages.forEach(function(item) {
+  // All Material 2 components are prefixed with  @angular2-material and use
+  // the components name as entry point.
+  packages['@angular2-material/' + item] = { main: item };
+});
+
 const barrels: any = [
-  // App specific barrels.
+  // App specific barrels.              
   'app/routing',
   'app/shared',
   'app/shared/filter-text',
   'app/shared/modal',
   'app/shared/nav',
   'app/shared/speaker-data',
+  'app/shared/product-data',
   'app/shared/spinner',
   'app/shared/toast',
   'app/+dashboard',

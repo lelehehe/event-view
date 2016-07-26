@@ -5,7 +5,7 @@
       <div class="mdl-cell mdl-cell--3-col"
         *ngFor="let product of products | async;trackBy:trackByProducts"
         (click)="gotoProductDetail(product)">
-        <ev-dashboard-button [product]="product"></ev-dashboard-button>
+        <ev-dashboard-card [product]="product"></ev-dashboard-card>
       </div>
     </div>
   </div> 

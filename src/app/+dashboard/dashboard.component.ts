@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DashboardButtonComponent } from './shared';
+import { DashboardButtonComponent, DashboardCardComponent } from './shared';
 import { Speaker, SpeakerService, Product, ProductService, ToastService } from '../../app/shared';
 
 
@@ -20,8 +20,8 @@ import {MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle'
 import {MD_PROGRESS_BAR_DIRECTIVES} from '@angular2-material/progress-bar';
 //import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
-//import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
- import {MD_TABS_DIRECTIVES} from '@angular2-material/tabs';
+import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
+import {MD_TABS_DIRECTIVES} from '@angular2-material/tabs';
 
 
 
@@ -30,7 +30,9 @@ import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
   selector: 'ev-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css'],
-  directives: [DashboardButtonComponent, 
+  directives: [
+    DashboardButtonComponent,
+    DashboardCardComponent, 
     MD_CARD_DIRECTIVES,
     MD_BUTTON_DIRECTIVES,
     MD_SIDENAV_DIRECTIVES,
@@ -41,9 +43,9 @@ import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
     MD_PROGRESS_BAR_DIRECTIVES,
     //MD_INPUT_DIRECTIVES,
     MD_LIST_DIRECTIVES,
-    // MD_ICON_DIRECTIVES,
+    //MD_ICON_DIRECTIVES,
     MD_TABS_DIRECTIVES
-    ]
+  ]
 })
 export class DashboardComponent implements OnDestroy, OnInit {
   private dbResetSubscription: Subscription;
@@ -85,18 +87,24 @@ export class DashboardComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.dbResetSubscription.unsubscribe();
   }
-progress: number = 0;
+
+  foods: any[] = [
+    { name: 'Pizza', rating: 'Excellent' },
+    { name: 'Burritos', rating: 'Great' },
+    { name: 'French fries', rating: 'Pretty good' },
+  ];
+  progress: number = 0;
   ngOnInit() {
     this.getSpeakers();
     this.getProducts();
     this.dbResetSubscription = this.speakerService.onDbReset
       .subscribe(() => this.getSpeakers());
 
- // Update the value for the progress-bar on an interval.
+    // Update the value for the progress-bar on an interval.
     setInterval(() => {
       this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
     }, 200);
-        
+
   }
 
   trackBySpeakers(index: number, speaker: Speaker) {
